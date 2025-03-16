@@ -1,0 +1,29 @@
+[project]
+name = "openapi_mcp_server"
+version = "0.2.1"
+description = "MCP Server For OpenAPI"
+readme = "README.md"
+authors = [
+  { name = "Rahul Kiran Gaddam", email = "gaddam.rahul@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "mcp[cli]>=1.4.1",
+    "pydantic>=2.10.6",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.3",
+]
+urls = {Homepage = "https://github.com/rahgadda/openapi_mcp_server"}
+
+[dependency-groups]
+dev = [
+    "setuptools>=76.0.0",
+    "twine>=6.1.0",
+]
+
+[project.scripts]
+openapi_mcp_server = "openapi_mcp_server.__main__:main"
+
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
