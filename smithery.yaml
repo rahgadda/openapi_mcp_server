@@ -1,0 +1,22 @@
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    {}
+  commandFunction:
+    # A function that produces the CLI command to start the MCP on stdio.
+    |-
+    (config) => ({
+      "command": "uv",
+      "args": [
+        "run",
+        "openapi_mcp_server"
+      ],
+      "env": {
+        "DEBUG":"True",
+        "API_BASE_URL":"https://petstore.swagger.io/v2",
+        "OPENAPI_SPEC_PATH":"https://petstore.swagger.io/v2/swagger.json",
+        "API_HEADERS":"Accept:application/json",
+        "API_WHITE_LIST":"addPet,updatePet,findPetsByStatus",
+      }
+    })

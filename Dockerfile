@@ -8,9 +8,9 @@ WORKDIR /app
 
 # Copy project files
 COPY . .
+RUN rm -rf images
 
 # Install dependencies using uv
-RUN uv install
 RUN uv sync
 
 # Expose the port your application runs on (adjust if needed)
@@ -22,4 +22,4 @@ ENV PYTHONUNBUFFERED=1 \
     ENVIRONMENT=production
 
 # Start the server
-CMD ["uv", "run","openapi_mcp_server", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uv", "run","openapi_mcp_server"]
