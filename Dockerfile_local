@@ -1,0 +1,11 @@
+FROM python:3.11-slim
+RUN apt-get update && apt-get install -y git && apt-get clean && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+RUN git clone https://github.com/rahgadda/openapi_mcp_server .
+COPY . .
+RUN rm -rf images
+RUN pip install uv
+RUN uv sync
+EXPOSE 8080
+ENV DEBUG=True API_BASE_URL=http://petstore.swagger.io/v2  OPENAPI_SPEC_PATH=https://petstore.swagger.io/v2/swagger.json API_HEADERS=Content-Type:application/json API_WHITE_LIST=findPetsByStatus
+CMD ["uv", "run","openapi_mcp_server"]
